@@ -9,9 +9,10 @@ namespace ejemplosFront.Controllers
 {
     public class HomeController : Controller
     {
-        public ActionResult Index(int cuil = 0)
+        public ActionResult Index(string nombre)
         {
-            var personaViewModel = invocaejemplosAnses.obtenerPersona(cuil);
+            /*var personaViewModel = invocaejemplosAnses.obtenerPersona(cuil)*/;
+            var personaViewModel = invocaejemplosAnses.BuscarPorNombre(nombre);
 
             return View(personaViewModel);
         }

@@ -183,10 +183,10 @@
     <Content Include="Web References\ejemploWS\Persona.datasource">
       <DependentUpon>Reference.map</DependentUpon>
     </Content>
-    <Content Include="Web References\ejemploWS\Reference.map">
+    <None Include="Web References\ejemploWS\Reference.map">
       <Generator>MSDiscoCodeGenerator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
-    </Content>
+    </None>
     <None Include="Web References\ejemploWS\WebService1.disco" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">

@@ -31,6 +31,8 @@ namespace ejemplosFront.ejemploWS {
         
         private System.Threading.SendOrPostCallback obtenerPersonaOperationCompleted;
         
+        private System.Threading.SendOrPostCallback BuscarPorNombreOperationCompleted;
+        
         private bool useDefaultCredentialsSetExplicitly;
         
         /// <remarks/>
@@ -73,6 +75,9 @@ namespace ejemplosFront.ejemploWS {
         public event obtenerPersonaCompletedEventHandler obtenerPersonaCompleted;
         
         /// <remarks/>
+        public event BuscarPorNombreCompletedEventHandler BuscarPorNombreCompleted;
+        
+        /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/obtenerPersona", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
         public Persona[] obtenerPersona(int cuil) {
             object[] results = this.Invoke("obtenerPersona", new object[] {
@@ -98,6 +103,35 @@ namespace ejemplosFront.ejemploWS {
             if ((this.obtenerPersonaCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.obtenerPersonaCompleted(this, new obtenerPersonaCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/BuscarPorNombre", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public Persona[] BuscarPorNombre(string nombre) {
+            object[] results = this.Invoke("BuscarPorNombre", new object[] {
+                        nombre});
+            return ((Persona[])(results[0]));
+        }
+        
+        /// <remarks/>
+        public void BuscarPorNombreAsync(string nombre) {
+            this.BuscarPorNombreAsync(nombre, null);
+        }
+        
+        /// <remarks/>
+        public void BuscarPorNombreAsync(string nombre, object userState) {
+            if ((this.BuscarPorNombreOperationCompleted == null)) {
+                this.BuscarPorNombreOperationCompleted = new System.Threading.SendOrPostCallback(this.OnBuscarPorNombreOperationCompleted);
+            }
+            this.InvokeAsync("BuscarPorNombre", new object[] {
+                        nombre}, this.BuscarPorNombreOperationCompleted, userState);
+        }
+        
+        private void OnBuscarPorNombreOperationCompleted(object arg) {
+            if ((this.BuscarPorNombreCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.BuscarPorNombreCompleted(this, new BuscarPorNombreCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -190,6 +224,32 @@ namespace ejemplosFront.ejemploWS {
         private object[] results;
         
         internal obtenerPersonaCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public Persona[] Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((Persona[])(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    public delegate void BuscarPorNombreCompletedEventHandler(object sender, BuscarPorNombreCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class BuscarPorNombreCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal BuscarPorNombreCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
                 base(exception, cancelled, userState) {
             this.results = results;
         }

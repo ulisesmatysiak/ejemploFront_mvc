@@ -16,8 +16,13 @@ namespace ejemplosFront.App_Code
             var service = obtenerWS();
             var persona = service.obtenerPersona(cuil);
             return ejemploAnsesMappers.Persona(persona?.FirstOrDefault(x => x.Cuil == cuil));
+        }
 
-
+        public static PersonaViewModel BuscarPorNombre(string nombre)
+        {
+            var service = obtenerWS();
+            var persona = service.BuscarPorNombre(nombre);
+            return ejemploAnsesMappers.Persona(persona?.FirstOrDefault(x=> x.ApellidoYNombre == nombre));
         }
 
         private static ejemploWS.WebService1 obtenerWS()
