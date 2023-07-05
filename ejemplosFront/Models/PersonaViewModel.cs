@@ -12,6 +12,5 @@ namespace ejemplosFront.Models
         public string ApellidoYNombre { get; set; }
 
         public DateTime fechaNacimiento { get; set; }
-
     }
 }

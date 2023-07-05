@@ -1,4 +1,4 @@
-﻿@model ejemplosFront.Models.PersonaViewModel 
+﻿@model ejemplosFront.Models.PersonaViewModel
 
 @{
     ViewBag.Title = "Home Page";
@@ -6,17 +6,22 @@
 
 <main>
 
-    <div class="row-cols-2">
-        <input type="text" name="filtro" value="" />
-        <input type="submit" name="filtrar" value="" />    
-    </div>
-   
-    <section class="row" aria-labelledby="aspnetTitle">
+    <div class="jumbotron">
+        <form method="post" asp-action="Index" asp-controller="Home" class="form-inline text-center">
+            <div class="form-group mb-2">
+                <input type="text" class="form-control" name="ApellidoYNombre" placeholder="Buscar" />
+            </div>
+            <button type="submit" class="btn btn-primary mb-2">Buscar</button>
+        </form>
+
         @if (Model != null)
         {
             <h1> @Model.Cuil </h1>
             <h2> @Model.ApellidoYNombre </h2>
             <h3> @Model.fechaNacimiento </h3>
         }
-    </section>
+
+    </div>
 </main>
+
+
