@@ -1,4 +1,4 @@
-﻿@model ejemplosFront.Models.PersonaViewModel
+﻿@model List<ejemplosFront.Models.PersonaViewModel>
 
 @{
     ViewBag.Title = "Home Page";
@@ -14,12 +14,13 @@
             <button type="submit" class="btn btn-primary mb-2">Buscar</button>
         </form>
 
-        @if (Model != null)
+        @foreach (var item in Model)
         {
-            <h1> @Model.Cuil </h1>
-            <h2> @Model.ApellidoYNombre </h2>
-            <h3> @Model.fechaNacimiento </h3>
+            <h1> @item.Cuil </h1>
+            <h2> @item.ApellidoYNombre </h2>
+            <h3> @item.fechaNacimiento </h3>
         }
+
 
     </div>
 </main>

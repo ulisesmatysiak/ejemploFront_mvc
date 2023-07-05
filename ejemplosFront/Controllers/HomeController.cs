@@ -13,7 +13,6 @@ namespace ejemplosFront.Controllers
         {
             //var personaViewModel = invocaejemplosAnses.obtenerPersona(cuil);
 
-
             if (string.IsNullOrEmpty(nombre))
             {
                 nombre = null;

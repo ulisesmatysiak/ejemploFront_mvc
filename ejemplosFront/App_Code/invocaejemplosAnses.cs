@@ -11,18 +11,18 @@ namespace ejemplosFront.App_Code
 {
     public class invocaejemplosAnses
     {
-        //public static PersonaViewModel obtenerPersona(int cuil)
-        //{
-        //    var service = obtenerWS();
-        //    var persona = service.obtenerPersona(cuil);
-        //    return ejemploAnsesMappers.Persona(persona?.FirstOrDefault(x => x.Cuil == cuil));
-        //}
+        public static PersonaViewModel obtenerPersona(int cuil)
+        {
+            var service = obtenerWS();
+            var persona = service.obtenerPersona(cuil);
+            return ejemploAnsesMappers.Persona(persona?.FirstOrDefault(x => x.Cuil == cuil));
+        }
 
-        public static PersonaViewModel BuscarPorNombre(string nombre)
+        public static List<PersonaViewModel> BuscarPorNombre(string nombre)
         {
             var service = obtenerWS();
             var persona = service.BuscarPorNombre(nombre);
-            return ejemploAnsesMappers.Persona(persona?.FirstOrDefault(x=> x.ApellidoYNombre == nombre));
+            return persona.Select(x => ejemploAnsesMappers.Persona(x)).ToList();
         }
 
         private static ejemploWS.WebService1 obtenerWS()
