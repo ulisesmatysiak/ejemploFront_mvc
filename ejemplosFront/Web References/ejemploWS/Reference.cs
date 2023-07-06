@@ -33,6 +33,8 @@ namespace ejemplosFront.ejemploWS {
         
         private System.Threading.SendOrPostCallback BuscarPorNombreOperationCompleted;
         
+        private System.Threading.SendOrPostCallback personaAltaOperationCompleted;
+        
         private bool useDefaultCredentialsSetExplicitly;
         
         /// <remarks/>
@@ -76,6 +78,9 @@ namespace ejemplosFront.ejemploWS {
         
         /// <remarks/>
         public event BuscarPorNombreCompletedEventHandler BuscarPorNombreCompleted;
+        
+        /// <remarks/>
+        public event personaAltaCompletedEventHandler personaAltaCompleted;
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/obtenerPersona", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
@@ -132,6 +137,35 @@ namespace ejemplosFront.ejemploWS {
             if ((this.BuscarPorNombreCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.BuscarPorNombreCompleted(this, new BuscarPorNombreCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/personaAlta", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public Persona personaAlta(Persona nuevo) {
+            object[] results = this.Invoke("personaAlta", new object[] {
+                        nuevo});
+            return ((Persona)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void personaAltaAsync(Persona nuevo) {
+            this.personaAltaAsync(nuevo, null);
+        }
+        
+        /// <remarks/>
+        public void personaAltaAsync(Persona nuevo, object userState) {
+            if ((this.personaAltaOperationCompleted == null)) {
+                this.personaAltaOperationCompleted = new System.Threading.SendOrPostCallback(this.OnpersonaAltaOperationCompleted);
+            }
+            this.InvokeAsync("personaAlta", new object[] {
+                        nuevo}, this.personaAltaOperationCompleted, userState);
+        }
+        
+        private void OnpersonaAltaOperationCompleted(object arg) {
+            if ((this.personaAltaCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.personaAltaCompleted(this, new personaAltaCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -259,6 +293,32 @@ namespace ejemplosFront.ejemploWS {
             get {
                 this.RaiseExceptionIfNecessary();
                 return ((Persona[])(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    public delegate void personaAltaCompletedEventHandler(object sender, personaAltaCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class personaAltaCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal personaAltaCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public Persona Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((Persona)(this.results[0]));
             }
         }
     }

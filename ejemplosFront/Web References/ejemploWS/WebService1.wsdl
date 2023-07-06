@@ -43,6 +43,20 @@
           </s:sequence>
         </s:complexType>
       </s:element>
+      <s:element name="personaAlta">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="nuevo" type="tns:Persona" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="personaAltaResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="personaAltaResult" type="tns:Persona" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
     </s:schema>
   </wsdl:types>
   <wsdl:message name="obtenerPersonaSoapIn">
@@ -57,6 +71,12 @@
   <wsdl:message name="BuscarPorNombreSoapOut">
     <wsdl:part name="parameters" element="tns:BuscarPorNombreResponse" />
   </wsdl:message>
+  <wsdl:message name="personaAltaSoapIn">
+    <wsdl:part name="parameters" element="tns:personaAlta" />
+  </wsdl:message>
+  <wsdl:message name="personaAltaSoapOut">
+    <wsdl:part name="parameters" element="tns:personaAltaResponse" />
+  </wsdl:message>
   <wsdl:portType name="WebService1Soap">
     <wsdl:operation name="obtenerPersona">
       <wsdl:input message="tns:obtenerPersonaSoapIn" />
@@ -65,6 +85,10 @@
     <wsdl:operation name="BuscarPorNombre">
       <wsdl:input message="tns:BuscarPorNombreSoapIn" />
       <wsdl:output message="tns:BuscarPorNombreSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="personaAlta">
+      <wsdl:input message="tns:personaAltaSoapIn" />
+      <wsdl:output message="tns:personaAltaSoapOut" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="WebService1Soap" type="tns:WebService1Soap">
@@ -87,6 +111,15 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="personaAlta">
+      <soap:operation soapAction="http://tempuri.org/personaAlta" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
   </wsdl:binding>
   <wsdl:binding name="WebService1Soap12" type="tns:WebService1Soap">
     <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
@@ -101,6 +134,15 @@
     </wsdl:operation>
     <wsdl:operation name="BuscarPorNombre">
       <soap12:operation soapAction="http://tempuri.org/BuscarPorNombre" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="personaAlta">
+      <soap12:operation soapAction="http://tempuri.org/personaAlta" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

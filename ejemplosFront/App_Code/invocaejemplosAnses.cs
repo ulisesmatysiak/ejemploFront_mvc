@@ -22,7 +22,20 @@ namespace ejemplosFront.App_Code
         {
             var service = obtenerWS();
             var persona = service.BuscarPorNombre(nombre);
-            return persona.Select(x => ejemploAnsesMappers.Persona(x)).ToList();
+
+            var filtro = new List<PersonaViewModel>();
+            foreach (var item in persona)
+                filtro.Add(ejemploAnsesMappers.Persona(item));
+            return filtro;
+
+            //return persona.Select(x => ejemploAnsesMappers.Persona(x)).ToList();
+        }
+
+        public static PersonaViewModel personaAlta(Persona nuevo)
+        {
+            var service = obtenerWS();
+            var persona = service.personaAlta(nuevo);
+            return ejemploAnsesMappers.Persona(persona);
         }
 
         private static ejemploWS.WebService1 obtenerWS()

@@ -5,24 +5,32 @@
 }
 
 <main>
-
-    <div class="jumbotron">
-        <form method="post" asp-action="Index" asp-controller="Home" class="form-inline text-center">
-            <div class="form-group mb-2">
-                <input type="text" class="form-control" name="ApellidoYNombre" placeholder="Buscar" />
-            </div>
-            <button type="submit" class="btn btn-primary mb-2">Buscar</button>
-        </form>
-
+   
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <form method="post" asp-action="Index" asp-controller="Home" class="text-center">
+                <div class="form-group">
+                    <div class="d-inline-block">
+                        <input type="text" class="form-control" name="nombre" placeholder="Buscar" />
+                    </div>
+                    <div class="d-inline-block">
+                        <button type="submit" class="btn btn-primary">Buscar</button>
+                    </div>
+                </div>
+            </form>
+        </div>
         @foreach (var item in Model)
         {
             <h1> @item.Cuil </h1>
             <h2> @item.ApellidoYNombre </h2>
             <h3> @item.fechaNacimiento </h3>
-        }
-
-
+        }      
+    </div>
+    <hr class="text-white" />
+    <div class="row text-center">
+        <div class="">
+            <a href="@Url.Action("Alta","Home")"class="btn btn-outline-info mb-4">Alta</a>
+        </div>    
     </div>
 </main>
-
 

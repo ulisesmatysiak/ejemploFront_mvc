@@ -4,6 +4,8 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using ejemplosFront.App_Code;
+using ejemplosFront.ejemploWS;
+using ejemplosFront.Models;
 
 namespace ejemplosFront.Controllers
 {
@@ -34,6 +36,17 @@ namespace ejemplosFront.Controllers
             ViewBag.Message = "Your contact page.";
 
             return View();
+        }
+
+        public ActionResult Alta()
+        {
+            return View();
+        }
+        [HttpPost]
+        public ActionResult GuardarAlta(Persona nuevo)
+        {
+            var personaViewModel = invocaejemplosAnses.personaAlta(nuevo);
+            return RedirectToAction("Index");
         }
     }
 }
