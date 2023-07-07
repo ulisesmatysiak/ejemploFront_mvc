@@ -31,10 +31,10 @@ namespace ejemplosFront.App_Code
             //return persona.Select(x => ejemploAnsesMappers.Persona(x)).ToList();
         }
 
-        public static PersonaViewModel personaAlta(Persona nuevo)
+        public static PersonaViewModel personaAlta(PersonaViewModel nuevo)
         {
             var service = obtenerWS();
-            var persona = service.personaAlta(nuevo);
+            var persona = service.personaAlta((Persona)nuevo);
             return ejemploAnsesMappers.Persona(persona);
         }
 

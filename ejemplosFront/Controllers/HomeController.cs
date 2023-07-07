@@ -42,11 +42,18 @@ namespace ejemplosFront.Controllers
         {
             return View();
         }
+
         [HttpPost]
-        public ActionResult GuardarAlta(Persona nuevo)
+        public ActionResult GuardarAlta(PersonaViewModel nuevo)
         {
             var personaViewModel = invocaejemplosAnses.personaAlta(nuevo);
             return RedirectToAction("Index");
+        }
+
+
+        public ActionResult Detalle(PersonaViewModel seleccionado)
+        {
+            return View(seleccionado);
         }
     }
 }

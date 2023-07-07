@@ -1,0 +1,34 @@
+﻿@model ejemplosFront.Models.PersonaViewModel
+
+@{
+    ViewBag.Title = "Detalle";
+}
+
+<h2>Detalle</h2>
+
+<div class="form-group">
+    <label for="Id">Id:</label>
+    <input type="text" class="form-control" id="inpId" value="@Model.Id" readonly />
+</div>
+<div class="form-group">
+    <label for="Cuil">Cuil:</label>
+    <input type="text" class="form-control" id="inpCuil" value="@Model.Cuil" readonly />
+</div>
+<div class="form-group">
+    <label for="ApellidoYNombre">Propiedad 2:</label>
+    <input type="text" class="form-control" id="inpNombre" value="@Model.ApellidoYNombre" readonly />
+</div>
+<div class="form-group">
+    <label for="Edad:"></label>
+    <input type="text" class="form-control" id="inpEdad" value="@CalcularEdad(Model.fechaNacimiento)" readonly />
+</div>
+
+@functions {
+    public int CalcularEdad(DateTime fechaNacimiento)
+    {
+        DateTime fechaActual = DateTime.Now;
+        int edad = fechaActual.Year - fechaNacimiento.Year;
+        return edad;
+    }
+}
+

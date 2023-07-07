@@ -184,6 +184,7 @@
       <DependentUpon>Reference.map</DependentUpon>
     </Content>
     <Content Include="Views\Home\Alta.cshtml" />
+    <Content Include="Views\Home\Detalle.cshtml" />
     <None Include="Web References\ejemploWS\Reference.map">
       <Generator>MSDiscoCodeGenerator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
