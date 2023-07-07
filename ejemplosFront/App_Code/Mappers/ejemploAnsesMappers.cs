@@ -16,6 +16,7 @@ namespace ejemplosFront.App_Code.Mappers
             }
             return new PersonaViewModel
             {  
+                Id = data.Id,
                 Cuil = data.Cuil,
                 ApellidoYNombre = data.ApellidoYNombre,
                 fechaNacimiento = data.fechaNacimiento

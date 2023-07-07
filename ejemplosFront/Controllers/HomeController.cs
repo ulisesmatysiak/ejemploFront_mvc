@@ -53,7 +53,15 @@ namespace ejemplosFront.Controllers
 
         public ActionResult Detalle(PersonaViewModel seleccionado)
         {
-            return View(seleccionado);
+            var model = new PersonaViewModel
+            {
+                Id = seleccionado.Id,
+                Cuil = seleccionado.Cuil,
+                ApellidoYNombre = seleccionado.ApellidoYNombre,
+                fechaNacimiento = seleccionado.fechaNacimiento
+            };
+
+            return View(model);
         }
     }
 }
