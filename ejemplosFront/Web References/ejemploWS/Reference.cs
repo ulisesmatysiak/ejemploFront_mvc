@@ -210,19 +210,19 @@ namespace ejemplosFront.ejemploWS {
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/eliminarPersona", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public Persona eliminarPersona(Persona id) {
+        public bool eliminarPersona(int id) {
             object[] results = this.Invoke("eliminarPersona", new object[] {
                         id});
-            return ((Persona)(results[0]));
+            return ((bool)(results[0]));
         }
         
         /// <remarks/>
-        public void eliminarPersonaAsync(Persona id) {
+        public void eliminarPersonaAsync(int id) {
             this.eliminarPersonaAsync(id, null);
         }
         
         /// <remarks/>
-        public void eliminarPersonaAsync(Persona id, object userState) {
+        public void eliminarPersonaAsync(int id, object userState) {
             if ((this.eliminarPersonaOperationCompleted == null)) {
                 this.eliminarPersonaOperationCompleted = new System.Threading.SendOrPostCallback(this.OneliminarPersonaOperationCompleted);
             }
@@ -435,10 +435,10 @@ namespace ejemplosFront.ejemploWS {
         }
         
         /// <remarks/>
-        public Persona Result {
+        public bool Result {
             get {
                 this.RaiseExceptionIfNecessary();
-                return ((Persona)(this.results[0]));
+                return ((bool)(this.results[0]));
             }
         }
     }

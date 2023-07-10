@@ -9,7 +9,7 @@ using System.Web;
 
 namespace ejemplosFront.App_Code
 {
-    public class invocaejemplosAnses
+    public static class invocaejemplosAnses
     {
         public static PersonaViewModel obtenerPersona(int cuil)
         {
@@ -45,12 +45,12 @@ namespace ejemplosFront.App_Code
             return ejemploAnsesMappers.Persona(edit);
         }
 
-        public void eliminarPersona(int id)
+        public static void eliminarPersona(int id)
         {
             var service = obtenerWS();
             var persona = new Persona();
             persona.Id = id;
-            service.eliminarPersona(persona);
+            service.eliminarPersona(id);
         }
 
         private static ejemploWS.WebService1 obtenerWS()

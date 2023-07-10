@@ -75,10 +75,8 @@ namespace ejemplosFront.Controllers
 
         public ActionResult Eliminar(int id)
         {
-            var invocador = new invocaejemplosAnses();
-            invocador.eliminarPersona(id);
+            invocaejemplosAnses.eliminarPersona(id);
             return RedirectToAction("Index");
         }
-
     }
 }

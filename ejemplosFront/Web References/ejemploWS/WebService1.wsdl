@@ -74,14 +74,14 @@
       <s:element name="eliminarPersona">
         <s:complexType>
           <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="id" type="tns:Persona" />
+            <s:element minOccurs="1" maxOccurs="1" name="id" type="s:int" />
           </s:sequence>
         </s:complexType>
       </s:element>
       <s:element name="eliminarPersonaResponse">
         <s:complexType>
           <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="eliminarPersonaResult" type="tns:Persona" />
+            <s:element minOccurs="1" maxOccurs="1" name="eliminarPersonaResult" type="s:boolean" />
           </s:sequence>
         </s:complexType>
       </s:element>
