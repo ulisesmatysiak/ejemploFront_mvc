@@ -35,6 +35,10 @@ namespace ejemplosFront.ejemploWS {
         
         private System.Threading.SendOrPostCallback personaAltaOperationCompleted;
         
+        private System.Threading.SendOrPostCallback modificarPersonaOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback eliminarPersonaOperationCompleted;
+        
         private bool useDefaultCredentialsSetExplicitly;
         
         /// <remarks/>
@@ -81,6 +85,12 @@ namespace ejemplosFront.ejemploWS {
         
         /// <remarks/>
         public event personaAltaCompletedEventHandler personaAltaCompleted;
+        
+        /// <remarks/>
+        public event modificarPersonaCompletedEventHandler modificarPersonaCompleted;
+        
+        /// <remarks/>
+        public event eliminarPersonaCompletedEventHandler eliminarPersonaCompleted;
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/obtenerPersona", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
@@ -166,6 +176,64 @@ namespace ejemplosFront.ejemploWS {
             if ((this.personaAltaCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.personaAltaCompleted(this, new personaAltaCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/modificarPersona", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public Persona modificarPersona(Persona persona) {
+            object[] results = this.Invoke("modificarPersona", new object[] {
+                        persona});
+            return ((Persona)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void modificarPersonaAsync(Persona persona) {
+            this.modificarPersonaAsync(persona, null);
+        }
+        
+        /// <remarks/>
+        public void modificarPersonaAsync(Persona persona, object userState) {
+            if ((this.modificarPersonaOperationCompleted == null)) {
+                this.modificarPersonaOperationCompleted = new System.Threading.SendOrPostCallback(this.OnmodificarPersonaOperationCompleted);
+            }
+            this.InvokeAsync("modificarPersona", new object[] {
+                        persona}, this.modificarPersonaOperationCompleted, userState);
+        }
+        
+        private void OnmodificarPersonaOperationCompleted(object arg) {
+            if ((this.modificarPersonaCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.modificarPersonaCompleted(this, new modificarPersonaCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/eliminarPersona", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public Persona eliminarPersona(Persona id) {
+            object[] results = this.Invoke("eliminarPersona", new object[] {
+                        id});
+            return ((Persona)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void eliminarPersonaAsync(Persona id) {
+            this.eliminarPersonaAsync(id, null);
+        }
+        
+        /// <remarks/>
+        public void eliminarPersonaAsync(Persona id, object userState) {
+            if ((this.eliminarPersonaOperationCompleted == null)) {
+                this.eliminarPersonaOperationCompleted = new System.Threading.SendOrPostCallback(this.OneliminarPersonaOperationCompleted);
+            }
+            this.InvokeAsync("eliminarPersona", new object[] {
+                        id}, this.eliminarPersonaOperationCompleted, userState);
+        }
+        
+        private void OneliminarPersonaOperationCompleted(object arg) {
+            if ((this.eliminarPersonaCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.eliminarPersonaCompleted(this, new eliminarPersonaCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -310,6 +378,58 @@ namespace ejemplosFront.ejemploWS {
         private object[] results;
         
         internal personaAltaCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public Persona Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((Persona)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    public delegate void modificarPersonaCompletedEventHandler(object sender, modificarPersonaCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class modificarPersonaCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal modificarPersonaCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public Persona Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((Persona)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    public delegate void eliminarPersonaCompletedEventHandler(object sender, eliminarPersonaCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class eliminarPersonaCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal eliminarPersonaCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
                 base(exception, cancelled, userState) {
             this.results = results;
         }

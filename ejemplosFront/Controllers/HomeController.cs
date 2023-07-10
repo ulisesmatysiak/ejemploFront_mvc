@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Antlr.Runtime;
 using ejemplosFront.App_Code;
 using ejemplosFront.ejemploWS;
 using ejemplosFront.Models;
@@ -20,6 +21,7 @@ namespace ejemplosFront.Controllers
                 nombre = null;
             }
             var personaViewModel = invocaejemplosAnses.BuscarPorNombre(nombre);
+            HttpContext.Session["Persona"] = personaViewModel;
 
             return View(personaViewModel);
         }
@@ -51,17 +53,32 @@ namespace ejemplosFront.Controllers
         }
 
 
-        public ActionResult Detalle(PersonaViewModel seleccionado)
+        public ActionResult Detalle(int id)
         {
-            var model = new PersonaViewModel
-            {
-                Id = seleccionado.Id,
-                Cuil = seleccionado.Cuil,
-                ApellidoYNombre = seleccionado.ApellidoYNombre,
-                fechaNacimiento = seleccionado.fechaNacimiento
-            };
+            var persona = HttpContext.Session["Persona"] as List<PersonaViewModel>;
+            var seleccionado = persona.FirstOrDefault(x => x.Id == id);
 
-            return View(model);
+            int edad = Utils.CalcularEdad(seleccionado.fechaNacimiento);
+            ViewBag.Edad = edad;
+
+            return View(seleccionado);
         }
+
+        [HttpPost]
+        public ActionResult Guardar(PersonaViewModel persona)
+        {
+            var personaViewModel = invocaejemplosAnses.modificarPersona(persona);
+            return RedirectToAction("Index");
+        }
+
+        [HttpPost]
+
+        public ActionResult Eliminar(int id)
+        {
+            var invocador = new invocaejemplosAnses();
+            invocador.eliminarPersona(id);
+            return RedirectToAction("Index");
+        }
+
     }
 }

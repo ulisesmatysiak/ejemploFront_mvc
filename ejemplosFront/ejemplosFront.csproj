@@ -118,6 +118,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Code\Mappers\ejemploAnsesMappers.cs" />
+    <Compile Include="App_Code\Utils.cs" />
     <Compile Include="Models\PersonaViewModel.cs" />
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>

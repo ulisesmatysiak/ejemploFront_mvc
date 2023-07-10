@@ -38,9 +38,25 @@ namespace ejemplosFront.App_Code
             return ejemploAnsesMappers.Persona(persona);
         }
 
+        public static PersonaViewModel modificarPersona(PersonaViewModel persona)
+        {
+            var service = obtenerWS();
+            var edit = service.modificarPersona((Persona)persona);
+            return ejemploAnsesMappers.Persona(edit);
+        }
+
+        public void eliminarPersona(int id)
+        {
+            var service = obtenerWS();
+            var persona = new Persona();
+            persona.Id = id;
+            service.eliminarPersona(persona);
+        }
+
         private static ejemploWS.WebService1 obtenerWS()
         {
-            return new ejemploWS.WebService1 {
+            return new ejemploWS.WebService1
+            {
                 Url = ConfigurationManager.AppSettings["urlEjemploWS"],
                 Credentials = System.Net.CredentialCache.DefaultCredentials
             };

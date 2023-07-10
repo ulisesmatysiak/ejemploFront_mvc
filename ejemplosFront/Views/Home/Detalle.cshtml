@@ -1,34 +1,83 @@
 ﻿@model ejemplosFront.Models.PersonaViewModel
 
+@using ejemplosFront.App_Code
+
+
 @{
     ViewBag.Title = "Detalle";
 }
+<form action="@Url.Action("Guardar", "Home")" method="post" id="formGuardar">
+    <div class="row">
+        <div class="">
+            <h2>Detalle</h2>
 
-<h2>Detalle</h2>
+            <div class="form-group">
+                <label for="Id">Id:</label>
+                <input type="text" class="form-control" name="Id" id="inpId" value="@Model.Id" readonly />
+            </div>
+            <div class="form-group">
+                <label for="Cuil">Cuil:</label>
+                <input type="text" class="form-control" name="Cuil" id="inpCuil" value="@Model.Cuil" readonly />
+            </div>
+            <div class="form-group">
+                <label for="ApellidoYNombre">Apellido y Nombre:</label>
+                <input type="text" class="form-control" name="ApellidoYNombre" id="inpNombre" value="@Model.ApellidoYNombre" readonly />
+            </div>
+            <div class="form-group">
+                <label for="Edad">Edad:</label>
+                <input type="text" class="form-control" id="inpEdad" value="@ViewBag.Edad" readonly />
+                <input type="hidden" name="fechaNacimiento" value="@Model.fechaNacimiento" />
+            </div>
+        </div>
+        <hr class="text-white" />
+        <div class="row">
+            <div>
+                <input id="inpModificar" type="button" value="Modificar" class="btn btn-warning" onclick="habilitarEdicion()" style="display: block" />
+                <input id="inpGuardar" type="submit" value="Guardar" class="btn btn-success" style="display: none" />
+            </div>
+        </div>
+    </div>
+</form>
+<hr class="text-white" />
+<form action="@Url.Action("Eliminar","Home", new {id = Model.Id})" method="post" id="formEliminar">
 
-<div class="form-group">
-    <label for="Id">Id:</label>
-    <input type="text" class="form-control" id="inpId" value="@Model.Id" readonly />
-</div>
-<div class="form-group">
-    <label for="Cuil">Cuil:</label>
-    <input type="text" class="form-control" id="inpCuil" value="@Model.Cuil" readonly />
-</div>
-<div class="form-group">
-    <label for="ApellidoYNombre">Apellido y Nombre:</label>
-    <input type="text" class="form-control" id="inpNombre" value="@Model.ApellidoYNombre" readonly />
-</div>
-<div class="form-group">
-    <label for="Edad">Edad:</label>
-    <input type="text" class="form-control" id="inpEdad" value="@CalcularEdad(Model.fechaNacimiento)" readonly />
-</div>
+    <div class="row">
+        <div>
+            <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#eliminarModal">Eliminar</button>
+            <div class="modal fade" id="eliminarModal" tabindex="-1" aria-labelledby="eliminarModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="eliminarModalLabel">Confirmar eliminación</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <p>Confirmar eliminación?</p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                            <input id="btnEliminar" type="submit" value="Eliminar" class="btn btn-danger" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
 
-@functions {
-    public int CalcularEdad(DateTime fechaNacimiento)
-    {
-        DateTime fechaActual = DateTime.Now;
-        int edad = fechaActual.Year - fechaNacimiento.Year;
-        return edad;
+
+<script>
+    function habilitarEdicion() {
+        document.getElementById("inpId").readOnly = false;
+        document.getElementById("inpCuil").readOnly = false;
+        document.getElementById("inpNombre").readOnly = false;
+        document.getElementById("inpEdad").readOnly = false;
+        document.getElementById("inpModificar").style.display = "none";
+        document.getElementById("inpGuardar").style.display = "block";
     }
-}
+</script>
+
+
+
+
 

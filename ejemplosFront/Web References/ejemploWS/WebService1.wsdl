@@ -57,6 +57,34 @@
           </s:sequence>
         </s:complexType>
       </s:element>
+      <s:element name="modificarPersona">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="persona" type="tns:Persona" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="modificarPersonaResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="modificarPersonaResult" type="tns:Persona" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="eliminarPersona">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="id" type="tns:Persona" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="eliminarPersonaResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="eliminarPersonaResult" type="tns:Persona" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
     </s:schema>
   </wsdl:types>
   <wsdl:message name="obtenerPersonaSoapIn">
@@ -77,6 +105,18 @@
   <wsdl:message name="personaAltaSoapOut">
     <wsdl:part name="parameters" element="tns:personaAltaResponse" />
   </wsdl:message>
+  <wsdl:message name="modificarPersonaSoapIn">
+    <wsdl:part name="parameters" element="tns:modificarPersona" />
+  </wsdl:message>
+  <wsdl:message name="modificarPersonaSoapOut">
+    <wsdl:part name="parameters" element="tns:modificarPersonaResponse" />
+  </wsdl:message>
+  <wsdl:message name="eliminarPersonaSoapIn">
+    <wsdl:part name="parameters" element="tns:eliminarPersona" />
+  </wsdl:message>
+  <wsdl:message name="eliminarPersonaSoapOut">
+    <wsdl:part name="parameters" element="tns:eliminarPersonaResponse" />
+  </wsdl:message>
   <wsdl:portType name="WebService1Soap">
     <wsdl:operation name="obtenerPersona">
       <wsdl:input message="tns:obtenerPersonaSoapIn" />
@@ -89,6 +129,14 @@
     <wsdl:operation name="personaAlta">
       <wsdl:input message="tns:personaAltaSoapIn" />
       <wsdl:output message="tns:personaAltaSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="modificarPersona">
+      <wsdl:input message="tns:modificarPersonaSoapIn" />
+      <wsdl:output message="tns:modificarPersonaSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="eliminarPersona">
+      <wsdl:input message="tns:eliminarPersonaSoapIn" />
+      <wsdl:output message="tns:eliminarPersonaSoapOut" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="WebService1Soap" type="tns:WebService1Soap">
@@ -120,6 +168,24 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="modificarPersona">
+      <soap:operation soapAction="http://tempuri.org/modificarPersona" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="eliminarPersona">
+      <soap:operation soapAction="http://tempuri.org/eliminarPersona" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
   </wsdl:binding>
   <wsdl:binding name="WebService1Soap12" type="tns:WebService1Soap">
     <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
@@ -143,6 +209,24 @@
     </wsdl:operation>
     <wsdl:operation name="personaAlta">
       <soap12:operation soapAction="http://tempuri.org/personaAlta" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="modificarPersona">
+      <soap12:operation soapAction="http://tempuri.org/modificarPersona" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="eliminarPersona">
+      <soap12:operation soapAction="http://tempuri.org/eliminarPersona" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
